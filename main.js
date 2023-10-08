@@ -1,12 +1,18 @@
 const content = document.querySelector(".cards");
-
-let pokemonData = [1, 2, 3, 4, 5] // connect array with cards
+const searchValue = document.getElementById("pokemonSearch");
+/*
+const filteredCharacters = hpCharacters.filter(character => {
+    return (
+      character.name.includes(searchString)
+    );
+  }); */
+let pokemonData = [] // connect array with cards
 
 const fetchData = async () => {
     await // until 
   fetch("https://pokeapi.co/api/v2/pokemon?limit=121&offset=0")
     .then((response) => response.json())
-    .then(data => 
+    .then((data) => 
        // one more fetch is inside the fetch
        {
         const fetches = data.results.map(item => {// go through each item
@@ -29,21 +35,38 @@ Promise.all(fetches).then((response) => { // it waits all conditions (fetches) a
 // JSON is the object we gonna read
 // response = we call this variable as we can
 // .json = built-in method
-const pokemonCards = () => {
-    //to go through each of the pokemon
-  const cardsP = pokemonData.map(pokemon => {
-    return  `<div class="card">
-    <img src="${pokemon.img}" alt="pokemon" class="image" />
-    <div class="cardName">
-      <h3>${pokemon.name}</h3>
-    </div>
-    </div>`
-  }).join('')
-  
-  content.innerHTML = cardsP
-};
-fetchData();
-// we call fetchData, get the response and call pokemonCards and send the data to our card
 
-//1. pokemon.types is an array, you need to map it again
-//2.connect input and search from pokeDex array by using the .filter() method
+//1. pokemon.types is an array, you need to map it again. Pokemon.types - array that contains objects.
+const pokemonCards = (searchString) => { //to put parametr here
+    //to go through each of the pokemon
+    /*searchValue.addEventListener("keyup", (e) => {
+        const searchString = e.target.value;
+    });*/
+  const cardsP = pokemonData.filter((pokemon) => {return pokemon.name.toLowerCase().includes(searchString);
+})
+.map((pokemon) => {
+    return  `<div class="card">
+    <img src="${pokemon.img}" alt="${pokemon.name}"/>
+    <div class="cardName">
+    <p>${pokemon.id}</p>
+      <h3>${pokemon.name}</h3>
+      <div>
+    ${pokemon.types.map((type) => getType(type)).join('')}
+    </div>
+    </div>
+    </div>`;
+  }).join('')
+  console.log(searchString);
+  content.innerHTML = cardsP
+  
+};
+  const getType = (type) => {
+return `<p>${type.type.name}</p>`;
+  }
+fetchData();
+//2.connect input and search from pokeDex array by using the .filter() method 
+
+searchValue.addEventListener("keyup", (e) => {
+  const searchString = e.target.value.tolowerCase();
+  pokemonCards(searchString);
+});
