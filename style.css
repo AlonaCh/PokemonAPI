@@ -13,6 +13,8 @@ body {
     background-size: cover;
     text-align: center;
     background-attachment: fixed;
+    font-family: 'Frank Ruhl Libre', serif;
+    color: #272142;
 }
 .container {
     margin-top: 20px;
@@ -20,6 +22,8 @@ body {
 input {
 margin-top: 20px;
 padding: 15px;
+border-radius: 5px;
+border: 1px solid #272142;
 }
 .cards {
     display: flex;

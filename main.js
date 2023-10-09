@@ -17,6 +17,7 @@ const fetchData = async () => {
        // one more fetch is inside the fetch
        {
         const fetches = data.results.map((item) => {// go through each item
+          // chaining promises
             return fetch(item.url).then((response) => response.json()).then(data => {
                 return {
                     id: data.id,
