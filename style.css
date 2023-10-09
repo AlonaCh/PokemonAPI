@@ -39,7 +39,17 @@ padding: 15px;
     justify-content: center;
     flex-direction: column;
     background:white;
+    position: relative;
    
+}
+.id {
+top: 0;
+right: 0;
+padding: 8px;
+border-bottom-left-radius: 17px;
+position: absolute;
+background: darkgray;
+color: white;
 }
 .card img {
     width: 100%;
@@ -53,8 +63,9 @@ padding: 15px;
   background-color: gray;
   color: white;
 }
-.image:hover {
+.card img:hover {
 filter: grayscale(0);
+
 }
 .cardName:hover {
 background-color: brown;

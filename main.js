@@ -1,5 +1,6 @@
 const content = document.querySelector(".cards");
-const searchValue = document.getElementById("pokemonSearch");
+const searchValue = document.querySelector("#pokemonSearch");
+console.log(searchValue.value);
 /*
 const filteredCharacters = hpCharacters.filter(character => {
     return (
@@ -15,8 +16,8 @@ const fetchData = async () => {
     .then((data) => 
        // one more fetch is inside the fetch
        {
-        const fetches = data.results.map(item => {// go through each item
-            return fetch(item.url).then(response => response.json()).then(data =>{
+        const fetches = data.results.map((item) => {// go through each item
+            return fetch(item.url).then((response) => response.json()).then(data => {
                 return {
                     id: data.id,
                     name: data.name,
@@ -27,7 +28,8 @@ const fetchData = async () => {
         });
 Promise.all(fetches).then((response) => { // it waits all conditions (fetches) are done
     pokemonData = response;
-    pokemonCards();
+    console.log(response);
+    pokemonCards('');
     });
     });
 };
@@ -37,21 +39,18 @@ Promise.all(fetches).then((response) => { // it waits all conditions (fetches) a
 // .json = built-in method
 
 //1. pokemon.types is an array, you need to map it again. Pokemon.types - array that contains objects.
-const pokemonCards = (searchString) => { //to put parametr here
+const pokemonCards = (searchString) => { // parameter is needed here
     //to go through each of the pokemon
-    /*searchValue.addEventListener("keyup", (e) => {
-        const searchString = e.target.value;
-    });*/
   const cardsP = pokemonData.filter((pokemon) => {return pokemon.name.toLowerCase().includes(searchString);
 })
 .map((pokemon) => {
     return  `<div class="card">
+    <p class="id">#${pokemon.id}</p>
     <img src="${pokemon.img}" alt="${pokemon.name}"/>
     <div class="cardName">
-    <p>${pokemon.id}</p>
       <h3>${pokemon.name}</h3>
       <div>
-    ${pokemon.types.map((type) => getType(type)).join('')}
+    <p>${pokemon.types.map((type) => getType(type)).join('')}</p>
     </div>
     </div>
     </div>`;
@@ -67,6 +66,6 @@ fetchData();
 //2.connect input and search from pokeDex array by using the .filter() method 
 
 searchValue.addEventListener("keyup", (e) => {
-  const searchString = e.target.value.tolowerCase();
+  const searchString = e.target.value.toLowerCase();
   pokemonCards(searchString);
 });
