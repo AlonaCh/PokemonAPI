@@ -1,12 +1,7 @@
 const content = document.querySelector(".cards");
 const searchValue = document.querySelector("#pokemonSearch");
-console.log(searchValue.value);
-/*
-const filteredCharacters = hpCharacters.filter(character => {
-    return (
-      character.name.includes(searchString)
-    );
-  }); */
+
+
 let pokemonData = [] // connect array with cards
 
 const fetchData = async () => {
@@ -16,14 +11,16 @@ const fetchData = async () => {
     .then((data) => 
        // one more fetch is inside the fetch
        {
-        const fetches = data.results.map((item) => {// go through each item
+        const fetches = data.results.map((result) => {// go through each item
           // chaining promises
-            return fetch(item.url).then((response) => response.json()).then(data => {
+            return fetch(result.url).then((response) => response.json()).then(data => {
                 return {
                     id: data.id,
                     name: data.name,
                     img: data.sprites.other['official-artwork'].front_default,
                     types: data.types,
+                    height: data.height,
+                    weight: data.weight,
                 };
                 });
         });
@@ -45,24 +42,29 @@ const pokemonCards = (searchString) => { // parameter is needed here
   const cardsP = pokemonData.filter((pokemon) => {return pokemon.name.toLowerCase().includes(searchString);
 })
 .map((pokemon) => {
+  const pokemonTypes = pokemon.types.map((item) => {
+    return `<span> ${item.type.name}  </span>`
+    ;
+  });
     return  `<div class="card">
     <p class="id">#${pokemon.id}</p>
     <img src="${pokemon.img}" alt="${pokemon.name}"/>
-    <div class="cardName">
-      <h3>${pokemon.name}</h3>
+   
+      <h3 class="cardName">${pokemon.name}</h3>
       <div>
-    <p>${pokemon.types.map((type) => getType(type)).join('')}</p>
-    </div>
+     <span class="typeName">${pokemonTypes.join('')}</span>
+    <p class="dimensions">
+    <span>Height: ${pokemon.height} m</span>
+    <span>Weight: ${pokemon.weight} kg</span>
+    </p>
     </div>
     </div>`;
   }).join('')
   console.log(searchString);
   content.innerHTML = cardsP
+}
+;
   
-};
-  const getType = (type) => {
-return `<p>${type.type.name}</p>`;
-  }
 fetchData();
 //2.connect input and search from pokeDex array by using the .filter() method 
 
@@ -70,3 +72,6 @@ searchValue.addEventListener("keyup", (e) => {
   const searchString = e.target.value.toLowerCase();
   pokemonCards(searchString);
 });
+
+
+
