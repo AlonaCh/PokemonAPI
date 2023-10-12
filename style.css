@@ -22,6 +22,10 @@ body {
 h1 {
     text-transform: uppercase;
 }
+.btn {
+    background-color: #272142;
+    color: white;
+}
 input {
 margin-top: 20px;
 padding: 15px;
