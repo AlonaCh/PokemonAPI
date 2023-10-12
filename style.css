@@ -25,13 +25,30 @@ h1 {
 .btn {
     background-color: #272142;
     color: white;
+    margin: 10px 5px;
+    padding: 0.8em;
+    border-radius: 5px;
+    border: none;
+}
+.btn:hover {
+    background: #CEBF0E;
+}
+.generation {
+    margin: 15px;
+}
+h3 {
+    font-size: 20px;
 }
 input {
 margin-top: 20px;
 padding: 15px;
 border-radius: 5px;
 border: 1px solid #272142;
+transition: width 0.4s ease-in-out;
 }
+  input[type=search]:focus {
+    transition: width 2s, height 4s;
+  }
 .cards {
     display: flex;
     justify-content: center;
@@ -44,13 +61,13 @@ border: 1px solid #272142;
 }
 .card {
     display: flex;
- margin-left: 10px;
- margin-right: 10px;
+    margin: 8px;
     width: 200px;
     justify-content: center;
     flex-direction: column;
     background:white;
     position: relative;
+    border-radius: 10px;
 }
 .id {
 top: 0;
@@ -58,7 +75,7 @@ right: 0;
 padding: 8px;
 border-bottom-left-radius: 17px;
 position: absolute;
-background: darkgray;
+background: grey;
 color: white;
 }
 .card img {
@@ -66,6 +83,9 @@ color: white;
     object-fit: cover;
     filter: grayscale(70%);
 }
+.card img:hover {
+    filter: grayscale(0);
+    }
 .cardName {
     font-size: 22px;
     font-weight: normal;
@@ -74,20 +94,29 @@ color: white;
     display: flex;
     flex-direction: column;
   padding: 8px 16px;
-  background-color: gray;
+  background-color: grey;
   color: white;
 }
+.subName:hover {
+background: #6CA2BC;
+color: white;
+}
 .typeName {
+    display: flex;
+  justify-content: center;
+  gap: 0.5rem;
 font-size: 18px;
 display: inline-block;
 font-weight: lighter;
+  text-transform: capitalize;
 }
-.card img:hover {
-filter: grayscale(0);
-
+.dimensions {
+    display: flex;
+  justify-content: space-between;
+  margin: 0 5px 0 5px;
 }
 .cardName:hover {
-background-color: brown;
+background-color: #CEBF0E;
 }
 .card:hover {
 animation: bounce 0.5s linear;

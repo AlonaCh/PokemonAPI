@@ -47,7 +47,7 @@ const pokemonCards = (searchString) => { // parameter is needed here
 })
 .map((pokemon) => {
   const pokemonTypes = pokemon.types.map((item) => {
-    return `<span> ${item.type.name}  </span>`
+    return `<span class="type"> ${item.type.name}  </span>`
     ;
   });
     return  `<div class="card">
@@ -55,11 +55,11 @@ const pokemonCards = (searchString) => { // parameter is needed here
     <img src="${pokemon.img}" alt="${pokemon.name}"/>
    
       <h3 class="cardName">${pokemon.name}</h3>
-      <div>
-     <span class="typeName">${pokemonTypes.join('')}</span>
+      <div class="subName">
+     <span class="typeName">${pokemonTypes.join('|')}</span>
     <p class="dimensions">
-    <span>Height: ${(pokemon.height / 10).toFixed(1)} m</span>
-    <span>Weight: ${(pokemon.weight / 10).toFixed(1)} kg</span>
+    <span> ${(pokemon.height)} cm</span>
+    <span> ${(pokemon.weight / 10).toFixed(1)} kg</span>
     </p>
     </div>
     </div>`;
@@ -82,7 +82,7 @@ fetch(`https:pokeapi.co/api/v2/generation/${generation}/`)
   .then((data) => 
      {
       let numbPokemonsGen = data.pokemon_species.length;
-      generationValue.innerHTML = `The amount is: ${numbPokemonsGen}`;
+      generationValue.innerHTML = `The number of pokemons in this generation is: ${numbPokemonsGen}`;
 
       const fetches = data.pokemon_species.map((result) => {
         // chaining promises
