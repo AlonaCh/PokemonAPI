@@ -1,137 +1,157 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-smoothing: grayscale;
 }
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 body {
-    background-image: url("backfoto.jpg");
-    background-size: cover;
-    text-align: center;
-    background-attachment: fixed;
-    font-family: 'Frank Ruhl Libre', serif;
-    color: #272142;
+  background-image: url("backfoto.jpg");
+  background-size: cover;
+  text-align: center;
+  background-attachment: fixed;
+  font-family: "Roboto Condensed", sans-serif;
+  color: #272142;
 }
 .container {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 h1 {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 .btn {
-    background-color: #272142;
-    color: white;
-    margin: 10px 5px;
-    padding: 0.8em;
-    border-radius: 5px;
-    border: none;
+  background-color: #272142;
+  color: white;
+  margin: 10px 5px;
+  padding: 0.8em;
+  border-radius: 5px;
+  border: none;
 }
 .btn:hover {
-    background: #CEBF0E;
+  background: #cebf0e;
 }
 .generation {
-    margin: 15px;
+  margin: 15px;
 }
 h3 {
-    font-size: 20px;
+  font-size: 20px;
+  margin-bottom: 5px;
 }
-input {
-margin-top: 20px;
-padding: 15px;
-border-radius: 5px;
-border: 1px solid #272142;
-transition: width 0.4s ease-in-out;
+.fg--search {
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  width: 300px;
 }
-  input[type=search]:focus {
-    transition: width 2s, height 4s;
-  }
+.fg--search input {
+  width: 100%;
+  display: block;
+  margin-top: 20px;
+  padding: 10px;
+  transition: width 0.4s ease-in-out;
+  border-radius: 5px;
+  border: 1px solid #272142;
+}
+
+.fg--search button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1em;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 15px 20px;
+  z-index: 2;
+}
+
 .cards {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    min-height: 50vh;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  min-height: 50vh;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
 }
 .card {
-    display: flex;
-    margin: 8px;
-    width: 200px;
-    justify-content: center;
-    flex-direction: column;
-    background:white;
-    position: relative;
-    border-radius: 10px;
+  display: flex;
+  margin: 8px;
+  width: 200px;
+  justify-content: center;
+  flex-direction: column;
+  background: white;
+  position: relative;
+  border-radius: 10px;
 }
 .id {
-top: 0;
-right: 0;
-padding: 8px;
-border-bottom-left-radius: 17px;
-position: absolute;
-background: grey;
-color: white;
+  top: 0;
+  right: 0;
+  padding: 8px;
+  border-bottom-left-radius: 17px;
+  position: absolute;
+  background: grey;
+  color: white;
 }
 .card img {
-    width: 100%;
-    object-fit: cover;
-    filter: grayscale(70%);
+  width: 100%;
+  object-fit: cover;
+  filter: grayscale(70%);
 }
 .card img:hover {
-    filter: grayscale(0);
-    }
+  filter: grayscale(0);
+}
 .cardName {
-    font-size: 22px;
-    font-weight: normal;
-    text-transform: capitalize;
-    font-weight: normal;
-    display: flex;
-    flex-direction: column;
+  font-size: 22px;
+  font-weight: normal;
+  text-transform: capitalize;
+  font-weight: normal;
+  display: flex;
+  flex-direction: column;
   padding: 8px 16px;
   background-color: grey;
   color: white;
 }
 .subName:hover {
-background: #6CA2BC;
-color: white;
+  background: #6ca2bc;
+  color: white;
 }
 .typeName {
-    display: flex;
+  display: flex;
   justify-content: center;
   gap: 0.5rem;
-font-size: 18px;
-display: inline-block;
-font-weight: lighter;
+  font-size: 18px;
+  display: inline-block;
+  font-weight: lighter;
   text-transform: capitalize;
 }
 .dimensions {
-    display: flex;
+  display: flex;
   justify-content: space-between;
   margin: 0 5px 0 5px;
 }
 .cardName:hover {
-background-color: #CEBF0E;
+  background-color: #cebf0e;
 }
 .card:hover {
-animation: bounce 0.5s linear;
+  animation: bounce 0.5s linear;
 }
 @keyframes bounce {
-    20% {
-        transform: translateY(-6px);
-    }
-    40% {
-        transform: translateY(0px);
-    }
-    60% {
-        transform: translateY(-2px);
-    }
-    80% {
-        transform: translateY(-0px);
-    }
+  20% {
+    transform: translateY(-6px);
+  }
+  40% {
+    transform: translateY(0px);
+  }
+  60% {
+    transform: translateY(-2px);
+  }
+  80% {
+    transform: translateY(-0px);
+  }
 }

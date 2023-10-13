@@ -5,10 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Changa&family=Dosis:wght@300&family=Frank+Ruhl+Libre:wght@300&family=Lato:ital,wght@0,300;1,400&family=Tourney:ital,wght@0,500;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Changa&family=Dosis:wght@300&family=Frank+Ruhl+Libre:wght@300&family=Lato:ital,wght@0,300;1,400&family=PT+Mono&family=Roboto+Condensed:wght@300&family=Tourney:ital,wght@0,500;1,400&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/f0d54a2468.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="style.css" />
     <title>Pokemon</title>
   </head>
@@ -28,7 +36,17 @@
       </div>
       <h3>Choose a generation...</h3>
       <h2 class="numberGen" id="generationValue"></h2>
-      <input type="search" id="pokemonSearch" name="pokemonSearch" />
+      <div class="form-group fg--search">
+        <input
+          type="text"
+          id="pokemonSearch"
+          name="pokemonSearch"
+          class="input"
+        />
+        <button type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
       <div class="cards"></div>
     </div>
 

@@ -3,72 +3,77 @@ const searchValue = document.querySelector("#pokemonSearch");
 const generationAmountBtn = document.querySelectorAll(".btn");
 const generationValue = document.querySelector("#generationValue");
 
-let pokemonData = [] // connect array with cards
+let pokemonData = []; // connect array with cards
 const generations = [];
 const fetchData = async () => {
-    await // until 
+  await // until
   fetch("https://pokeapi.co/api/v2/pokemon?limit=121&offset=0")
     .then((response) => response.json())
-    .then((data) => 
-       // one more fetch is inside the fetch
-       {
-        const fetches = data.results.map((result) => {// go through each result
+    .then((data) =>
+      // one more fetch is inside the fetch
+      {
+        const fetches = data.results.map((result) => {
+          // go through each result
           // chaining promises
-            return fetch(result.url)
+          return fetch(result.url)
             .then((response) => response.json())
-            .then(data => {
+            .then((data) => {
               console.log(result.url);
               console.log(data);
-                return {
-                    id: data.id,
-                    name: data.name,
-                    img: data.sprites.other['official-artwork'].front_default,
-                    types: data.types,
-                    height: data.height,
-                    weight: data.weight,
-                };
-                });
+              return {
+                id: data.id,
+                name: data.name,
+                img: data.sprites.other["official-artwork"].front_default,
+                types: data.types,
+                height: data.height,
+                weight: data.weight,
+              };
+            });
         });
-Promise.all(fetches).then((response) => { // it waits all until conditions (fetches) are done
-    pokemonData = response;
-    pokemonCards('');
-    });
-    });
+        Promise.all(fetches).then((response) => {
+          // it waits all until conditions (fetches) are done
+          pokemonData = response;
+          pokemonCards("");
+        });
+      }
+    );
 };
 // fetch is string only
 // JSON is the object we gonna read
 // response = we call this variable as we want
 // .json = built-in method
 //1. pokemon.types is an array, we need to map it again. Pokemon.types - array that contains objects.
-const pokemonCards = (searchString) => { // parameter is needed here
-    //to go through each of the pokemon
-  const cardsP = pokemonData.filter((pokemon) => {
-    return pokemon.name.toLowerCase().includes(searchString);
-})
-.map((pokemon) => {
-  const pokemonTypes = pokemon.types.map((item) => {
-    return `<span class="type"> ${item.type.name}  </span>`
-    ;
-  });
-    return  `<div class="card">
+const pokemonCards = (searchString) => {
+  // parameter is needed here
+  //to go through each of the pokemon
+  const cardsP = pokemonData
+    .filter((pokemon) => {
+      return pokemon.name.toLowerCase().includes(searchString);
+    })
+    .map((pokemon) => {
+      const pokemonTypes = pokemon.types.map((item) => {
+        return `<span class="type"> ${item.type.name}  </span>`;
+      });
+      return `<div class="card">
     <p class="id">#${pokemon.id}</p>
     <img src="${pokemon.img}" alt="${pokemon.name}"/>
    
       <h3 class="cardName">${pokemon.name}</h3>
       <div class="subName">
-     <span class="typeName">${pokemonTypes.join('|')}</span>
+     <span class="typeName">${pokemonTypes.join("|")}</span>
     <p class="dimensions">
-    <span> ${(pokemon.height)} cm</span>
+    <span> ${pokemon.height} cm</span>
     <span> ${(pokemon.weight / 10).toFixed(1)} kg</span>
     </p>
     </div>
     </div>`;
-  }).join('')
+    })
+    .join("");
   console.log(searchString);
-  content.innerHTML = cardsP
+  content.innerHTML = cardsP;
 };
 fetchData();
-//2.connect input and search from pokeDex array by using the .filter() method 
+//2.connect input and search from pokeDex array by using the .filter() method
 searchValue.addEventListener("keyup", (e) => {
   const searchString = e.target.value.toLowerCase();
   pokemonCards(searchString);
@@ -76,39 +81,41 @@ searchValue.addEventListener("keyup", (e) => {
 // Display the amount of Pokemons in the generation.
 // add new url for generations
 const generation = async (generation) => {
-  await // until  
-fetch(`https:pokeapi.co/api/v2/generation/${generation}/`)
-  .then((response) => response.json())
-  .then((data) => 
-     {
+  await // until
+  fetch(`https:pokeapi.co/api/v2/generation/${generation}/`)
+    .then((response) => response.json())
+    .then((data) => {
       let numbPokemonsGen = data.pokemon_species.length;
       generationValue.innerHTML = `The number of pokemons in this generation is: ${numbPokemonsGen}`;
 
       const fetches = data.pokemon_species.map((result) => {
         // chaining promises
-          return fetch(`https:pokeapi.co/api/v2/pokemon/${result.name}/`).then((response) => response.json()).then(data => {
-              return {
-                id: data.id,
-                name: data.name,
-                img: data.sprites.other['official-artwork'].front_default,
-                types: data.types,
-                height: data.height,
-                weight: data.weight,
-                };
-              });
+        return fetch(`https:pokeapi.co/api/v2/pokemon/${result.name}/`)
+          .then((response) => response.json())
+          .then((data) => {
+            return {
+              id: data.id,
+              name: data.name,
+              img: data.sprites.other["official-artwork"].front_default,
+              types: data.types,
+              height: data.height,
+              weight: data.weight,
+            };
+          });
       });
-      Promise.all(fetches).then((response) => { // it waits all conditions (fetches) are done
+      Promise.all(fetches).then((response) => {
+        // it waits all conditions (fetches) are done
         pokemonData = response;
-        pokemonCards('');
-        });
-        });
-    };
-      const amountInGeneration = () => {
-        generationAmountBtn.forEach((button) =>
-        button.addEventListener('click', () => {
-          let gen = button.getAttribute("data-generation");
-          generation(gen);
-        })
-      )};
-      amountInGeneration();
-    
+        pokemonCards("");
+      });
+    });
+};
+const amountInGeneration = () => {
+  generationAmountBtn.forEach((button) =>
+    button.addEventListener("click", () => {
+      let gen = button.getAttribute("data-generation");
+      generation(gen);
+    })
+  );
+};
+amountInGeneration();
